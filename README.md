@@ -44,54 +44,54 @@ The application follows RESTful principles, using standard HTTP methods and JSON
    spring.datasource.password=your_password
 
 4. **Run the Application**:
-Navigate to the project directory and run the following commands:
+    Navigate to the project directory and run the following commands:
 
-```bash
-mvn clean install
-mvn spring-boot:run
-This will build and start the Spring Boot application. Once running, the API will be accessible at:
-http://localhost:8080
+    ```bash
+    mvn clean install
+    mvn spring-boot:run
+    This will build and start the Spring Boot application. Once running, the API will be accessible at:
+    http://localhost:8080
 
 5. **Access the API**:
 
-Use an API testing tool like **Postman** to test the endpoints.
+    Use an API testing tool like **Postman** to test the endpoints.
 
-- To get all products: 
-  - `GET` request to `/product`
-- To create a new user:
-  - `POST` request to `/user`
-- To update a product:
-  - `PUT` request to `/product/{id}`
+    - To get all products: 
+    - `GET` request to `/product`
+    - To create a new user:
+    - `POST` request to `/user`
+    - To update a product:
+    - `PUT` request to `/product/{id}`
 
 6. **API Endpoints**:
-### Product Endpoints
+    ### Product Endpoints
 
-| HTTP Method | Endpoint         | Description                     |
-|-------------|------------------|---------------------------------|
-| `GET`       | `/product`        | Retrieve all products           |
-| `GET`       | `/product/{id}`   | Retrieve a product by ID        |
-| `POST`      | `/product`        | Create a new product            |
-| `PUT`       | `/product/{id}`   | Update a product by ID          |
-| `DELETE`    | `/product/{id}`   | Delete a product by ID          |
+    | HTTP Method | Endpoint         | Description                     |
+    |-------------|------------------|---------------------------------|
+    | `GET`       | `/product`        | Retrieve all products           |
+    | `GET`       | `/product/{id}`   | Retrieve a product by ID        |
+    | `POST`      | `/product`        | Create a new product            |
+    | `PUT`       | `/product/{id}`   | Update a product by ID          |
+    | `DELETE`    | `/product/{id}`   | Delete a product by ID          |
 
-### User Endpoints
+    ### User Endpoints
 
-| HTTP Method | Endpoint         | Description                     |
-|-------------|------------------|---------------------------------|
-| `GET`       | `/user`           | Retrieve all users              |
-| `GET`       | `/user/{id}`      | Retrieve a user by ID           |
-| `POST`      | `/user`           | Create a new user               |
-| `PUT`       | `/user/{id}`      | Update a user by ID             |
-| `PATCH`     | `/user/{id}`      | Partially update a user by ID   |
-| `DELETE`    | `/user/{id}`      | Delete a user by ID             |
+    | HTTP Method | Endpoint         | Description                     |
+    |-------------|------------------|---------------------------------|
+    | `GET`       | `/user`           | Retrieve all users              |
+    | `GET`       | `/user/{id}`      | Retrieve a user by ID           |
+    | `POST`      | `/user`           | Create a new user               |
+    | `PUT`       | `/user/{id}`      | Update a user by ID             |
+    | `PATCH`     | `/user/{id}`      | Partially update a user by ID   |
+    | `DELETE`    | `/user/{id}`      | Delete a user by ID             |
 
-### Example Request - Create a User
+    ### Example Request - Create a User
 
-```json
-{
-  "firstname": "John",
-  "lastname": "Doe",
-  "dob": "1990-01-01",
-  "username": "johndoe",
-  "password": "password123"
-}
+    ```json
+    {
+    "firstname": "John",
+    "lastname": "Doe",
+    "dob": "1990-01-01",
+    "username": "johndoe",
+    "password": "password123"
+    }
