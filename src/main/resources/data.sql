@@ -1,0 +1,2 @@
+insert into product(id, name, prodgroup) values('fd8985a2-84ad-4245-8500-d9f362ca2f65','iPhone', 'Apple');
+insert into product(id, name, prodgroup) values('fd8985a2-84ad-4245-8500-d9f362111111','iPad', 'Apple');
