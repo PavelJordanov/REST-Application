@@ -43,8 +43,7 @@ The application follows RESTful principles, using standard HTTP methods and JSON
    spring.datasource.username=your_username
    spring.datasource.password=your_password
 
-## 4. Run the Application
-
+4. **Run the Application**:
 Navigate to the project directory and run the following commands:
 
 ```bash
@@ -53,7 +52,7 @@ mvn spring-boot:run
 This will build and start the Spring Boot application. Once running, the API will be accessible at:
 http://localhost:8080
 
-## 5. Access the API
+5. **Access the API**:
 
 Use an API testing tool like **Postman** to test the endpoints.
 
@@ -64,8 +63,7 @@ Use an API testing tool like **Postman** to test the endpoints.
 - To update a product:
   - `PUT` request to `/product/{id}`
 
-## 6. API Endpoints
-
+6. **API Endpoints**:
 ### Product Endpoints
 
 | HTTP Method | Endpoint         | Description                     |
