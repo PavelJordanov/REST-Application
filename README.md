@@ -1,97 +1,87 @@
-# REST Application for Product and User Management
+# Fitness and Health REST Application
 
 ## Overview
-
-This RESTful API is designed for managing users and products, built using Spring Boot. It offers endpoints for basic CRUD operations on both user and product entities, and includes features such as user authentication and partial updates through `PATCH` requests.
-
-The application follows RESTful principles, using standard HTTP methods and JSON for data exchange, ensuring easy integration with front-end applications or other services.
+This project is a Spring Boot-based RESTful application designed to manage fitness and health-related data. It includes comprehensive APIs for handling users, subscriptions, payments, user balances, and fitness plans. With robust service implementations and database repositories, this application provides a scalable backend solution suitable for integration with client applications or third-party systems.
 
 ## Features
+### User Management
+- Create, update, delete, and retrieve user profiles.
+- Track user-specific fitness goals, plans, and subscriptions.
 
-- **User Management**: 
-  - Create, read, update, and delete users.
-  - Users include attributes like first name, last name, date of birth, username, and password.
-  - Supports partial updates via `PATCH` method for updating specific user fields.
-  
-- **Product Management**:
-  - CRUD operations for managing product entities.
-  - Products include attributes like product ID, name, and group (e.g., electronics, home goods).
-  
-- **Repository Pattern**: The application uses repositories (`UserRepository`, `ProductRepository`) to interact with the database, ensuring separation of concerns and clean architecture.
+### Subscription Management
+- Manage user subscriptions to fitness plans, including start and end dates and associated costs.
 
-## Getting Started
+### Payment Processing
+- Handle payment transactions, storing details like type, amount, and date.
 
+### User Balance Management
+- Manage user account balances for fitness-related transactions.
+
+### Fitness Plan Management
+- Define and manage fitness plans, including training routines, nutrition plans, or combinations.
+
+## Technologies Used
+- **Backend Framework:** Spring Boot
+- **Programming Language:** Java
+- **Database:** Relational database (e.g., MySQL, PostgreSQL)
+- **Build Tool:** Maven
+- **Data Format:** JSON
+- **Dependency Injection:** Spring Framework
+- **ORM/Template Engine:** JdbcTemplate
+
+
+## API Endpoints
+### User Controller
+- `GET /user` - Retrieve all users.
+- `GET /user/{id}` - Retrieve a user by ID.
+- `POST /user` - Create a new user.
+- `PUT /user/{id}` - Update an existing user by ID.
+- `DELETE /user/{id}` - Delete a user by ID.
+
+### Subscription Controller
+- `GET /subscription` - Retrieve all subscriptions.
+- `GET /subscription/{id}` - Retrieve a subscription by ID.
+- `POST /subscription` - Create a new subscription.
+- `DELETE /subscription/{id}` - Delete a subscription by ID.
+
+### Payment Controller
+- `GET /payment` - Retrieve all payments.
+- `GET /payment/{id}` - Retrieve a payment by ID.
+- `POST /payment` - Create a new payment.
+- `DELETE /payment/{id}` - Delete a payment by ID.
+
+### User Balance Controller
+- `GET /userbalance` - Retrieve all user balances.
+- `GET /userbalance/{id}` - Retrieve a user balance by ID.
+- `POST /userbalance` - Create a new user balance.
+- `PUT /userbalance/{id}` - Update a user balance by ID.
+- `DELETE /userbalance/{id}` - Delete a user balance by ID.
+
+### Plan Controller
+- `GET /plan` - Retrieve all fitness plans.
+- `GET /plan/{id}` - Retrieve a fitness plan by ID.
+- `POST /plan` - Create a new fitness plan.
+- `PUT /plan/{id}` - Update an existing fitness plan by ID.
+- `DELETE /plan/{id}` - Delete a fitness plan by ID.
+
+## Setup Instructions
 ### Prerequisites
+- Java 11 or higher
+- Maven
+- A relational database (e.g., MySQL)
 
-- **Java 11** or higher
-- **Maven** (for dependency management)
-- **MySQL** (for database management)
-- **Postman** or any API testing tool to test the endpoints
-
-### Setup Instructions
-
-1. **Clone the Repository**: Clone the repository to your local machine.
-
-2. **Database Setup**:
-   - Run the `schema.sql` file to set up the necessary database tables.
-   - Load initial data using the `data.sql` file.
-
-3. **Configure Application**:
-   Update the `application.properties` file with your MySQL credentials:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
-
-4. **Run the Application**:
-    Navigate to the project directory and run the following commands:
-
-    ```bash
-    mvn clean install
-    mvn spring-boot:run
-    This will build and start the Spring Boot application. Once running, the API will be accessible at:
-    http://localhost:8080
-
-5. **Access the API**:
-
-    Use an API testing tool like **Postman** to test the endpoints.
-
-    - To get all products: 
-    - `GET` request to `/product`
-    - To create a new user:
-    - `POST` request to `/user`
-    - To update a product:
-    - `PUT` request to `/product/{id}`
-
-6. **API Endpoints**:
-    ### Product Endpoints
-
-    | HTTP Method | Endpoint         | Description                     |
-    |-------------|------------------|---------------------------------|
-    | `GET`       | `/product`        | Retrieve all products           |
-    | `GET`       | `/product/{id}`   | Retrieve a product by ID        |
-    | `POST`      | `/product`        | Create a new product            |
-    | `PUT`       | `/product/{id}`   | Update a product by ID          |
-    | `DELETE`    | `/product/{id}`   | Delete a product by ID          |
-
-    ### User Endpoints
-
-    | HTTP Method | Endpoint         | Description                     |
-    |-------------|------------------|---------------------------------|
-    | `GET`       | `/user`           | Retrieve all users              |
-    | `GET`       | `/user/{id}`      | Retrieve a user by ID           |
-    | `POST`      | `/user`           | Create a new user               |
-    | `PUT`       | `/user/{id}`      | Update a user by ID             |
-    | `PATCH`     | `/user/{id}`      | Partially update a user by ID   |
-    | `DELETE`    | `/user/{id}`      | Delete a user by ID             |
-
-    ### Example Request - Create a User
-
-    ```json
-    {
-    "firstname": "John",
-    "lastname": "Doe",
-    "dob": "1990-01-01",
-    "username": "johndoe",
-    "password": "password123"
-    }
+### Steps
+1. **Clone the repository:**
+   ```bash
+   git clone <repository_url>
+   cd <repository_folder>
+2. **Configure the databse:**
+  spring.datasource.url=jdbc:mysql://localhost:3306/your_database
+  spring.datasource.username=your_username
+  spring.datasource.password=your_password
+3. **Build the Project:**
+  mvn clean install
+4. **Run the Application:**
+  mvn spring-boot:run
+5. **Access the API:**
+  http://localhost:8080
