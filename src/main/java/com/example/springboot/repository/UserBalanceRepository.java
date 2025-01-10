@@ -37,6 +37,10 @@ public class UserBalanceRepository {
         return jdbcTemplate.queryForObject("select * from userbalances where id=?", new UserBalanceRowMapper(), id);
     }
 
+    public UserBalance findByUid(String uid) {
+        return jdbcTemplate.queryForObject("select * from userbalances where uid=?", new UserBalanceRowMapper(), uid);
+    }
+
     public void deleteById(String id) {
         jdbcTemplate.update("delete from userbalances where id=?", id);
     }

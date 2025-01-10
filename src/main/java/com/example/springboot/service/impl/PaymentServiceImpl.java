@@ -9,10 +9,25 @@ import com.example.springboot.model.Payment;
 import com.example.springboot.repository.PaymentRepository;
 import com.example.springboot.service.PaymentService;
 
+import com.example.springboot.model.UserBalance;
+import com.example.springboot.model.Subscription;
+import com.example.springboot.model.User;
+import com.example.springboot.repository.PlanRepository;
+import com.example.springboot.repository.SubscriptionRepository;
+import com.example.springboot.repository.UserBalanceRepository;
+import com.example.springboot.repository.UserRepository;
+import com.example.springboot.service.UserBalanceService;
+
 @Service
 public class PaymentServiceImpl implements PaymentService{
     @Autowired
     PaymentRepository repository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    UserBalanceRepository userBalanceRepository;
+    @Autowired
+    SubscriptionRepository subscriptionRepository;
 
     public List<Payment> findAll() {
         System.out.println("HERE2!!!");
@@ -25,6 +40,19 @@ public class PaymentServiceImpl implements PaymentService{
         repository.deleteById(id);
     }
     public int insert(Payment payment) {
+        // Get UserId from payment object
+        String userId = payment.getUid();
+
+        // Use the uid to find the associated UserBalance Record
+        UserBalance existingUserBalance = userBalanceRepository.findByUid(userId);
+        if (existingUserBalance == null) {
+            throw new IllegalArgumentException("User balance not found for user ID: " + userId);
+        }
+        
+        int oldBalance = existingUserBalance.getBalance();
+        int newBalance = oldBalance + payment.getAmount();
+        existingUserBalance.setBalance(newBalance);
+        
         return repository.insert(payment);
     }
 }

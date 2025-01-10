@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.springboot.model.UserBalance;
-import com.example.springboot.model.Subscription;
-import com.example.springboot.model.User;
-import com.example.springboot.repository.PlanRepository;
 import com.example.springboot.repository.SubscriptionRepository;
 import com.example.springboot.repository.UserBalanceRepository;
 import com.example.springboot.repository.UserRepository;
