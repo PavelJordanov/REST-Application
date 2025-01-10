@@ -1,10 +1,13 @@
-package com.example.springboot;
+package com.example.springboot.service.impl;
 
 import java.util.List;
 
-import com.example.springboot.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.springboot.model.Product;
+import com.example.springboot.repository.ProductRepository;
+import com.example.springboot.service.ProductService;
 
 
 @Service

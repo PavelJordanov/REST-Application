@@ -1,0 +1,25 @@
+meta {
+  name: Save Plan
+  type: http
+  seq: 11
+}
+
+post {
+  url: http://localhost:8080/plan
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  { 
+    "name": "3 Month Plan",
+    "description": "8 training sessions a month, 12 week custom diet, 12 week training routine",
+    "type": "mix",
+    "durationInWeeks": "12",
+    "price": "2190"
+  }
+}

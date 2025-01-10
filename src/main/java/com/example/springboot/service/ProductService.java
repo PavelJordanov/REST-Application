@@ -1,6 +1,8 @@
-package com.example.springboot;
+package com.example.springboot.service;
 
 import java.util.List;
+
+import com.example.springboot.model.Product;
 
 public interface ProductService {
 

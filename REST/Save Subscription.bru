@@ -1,0 +1,25 @@
+meta {
+  name: Save Subscription
+  type: http
+  seq: 14
+}
+
+post {
+  url: http://localhost:8080/subscription
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "uid": "fd8985a2-84ad-4245-8500-d9f362222222",
+    "pid": "fd8985a2-84ad-4245-8500-d9f361111111",
+    "start": "2025-01-03",
+    "end": "2025-04-03",
+    "price": 2190
+  }
+}

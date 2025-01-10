@@ -1,0 +1,25 @@
+meta {
+  name: Update Plan By ID
+  type: http
+  seq: 12
+}
+
+put {
+  url: http://localhost:8080/plan/0ac12612-9a51-47ff-afdb-5d31b25fcb98
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  { 
+    "name": "2 Month Plan",
+    "description": "8 training sessions a month, 8 week custom diet, 8 week training routine",
+    "type": "mix",
+    "durationInWeeks": "8",
+    "price": "1500"
+  }
+}

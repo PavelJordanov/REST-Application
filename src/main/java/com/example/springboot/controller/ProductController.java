@@ -1,18 +1,11 @@
-package com.example.springboot;
+package com.example.springboot.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.springboot.model.Product;
+import com.example.springboot.service.ProductService;
 
-import com.example.springboot.ProductService;
-
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.http.*;
