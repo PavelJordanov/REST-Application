@@ -10,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.springboot.model.Plan;
 import com.example.springboot.model.User;
 import com.example.springboot.model.Subscription;
+import com.example.springboot.model.UserBalance;
 import com.example.springboot.repository.PlanRepository;
 import com.example.springboot.repository.SubscriptionRepository;
 import com.example.springboot.repository.UserRepository;
+import com.example.springboot.repository.UserBalanceRepository;
 import com.example.springboot.service.UserService;
 
 
@@ -24,6 +26,8 @@ public class UserServiceImpl implements UserService {
     PlanRepository planRepository;
     @Autowired
     SubscriptionRepository subscriptionRepository;
+    @Autowired
+    UserBalanceRepository userBalanceRepository;
 
     public List<User> findAll() {
         System.out.println("HERE2!!!");
@@ -47,6 +51,11 @@ public class UserServiceImpl implements UserService {
             if (plan != null) {
                 plan.addUser(user.getId()); // Increment numclients
                 planRepository.update(plan); // Save changes to the database
+                
+                UserBalance userBalance = new UserBalance();
+                userBalance.setUid(user.getId());
+                userBalance.setBalance(-(plan.getPrice()));
+                userBalanceRepository.insert(userBalance);
             }
         }
     
@@ -69,9 +78,8 @@ public class UserServiceImpl implements UserService {
         String newEnd = user.getEnd();
 
         // Handle numclients adjustment when the plan changes
+        Plan oldPlan = planRepository.findById(oldPlanId);
         if (!oldPlanId.equals(newPlanId)) {
-            Plan oldPlan = planRepository.findById(oldPlanId);
-
             // Decrement numclients for the old plan
             if (oldPlanId != null) {
                 // Plan oldPlan = planRepository.findById(oldPlanId);
@@ -92,8 +100,8 @@ public class UserServiceImpl implements UserService {
             }
 
             // Increment numclients for the new plan
+            Plan newPlan = planRepository.findById(newPlanId);
             if (newPlanId != null) {
-                Plan newPlan = planRepository.findById(newPlanId);
                 if (newPlan != null) {
                     // Create new subscription in the log with info of the new plan
                     Subscription subscription = new Subscription();
@@ -109,8 +117,39 @@ public class UserServiceImpl implements UserService {
                     planRepository.update(newPlan);
                 }
             }
-        }
 
+            // Update the balance of the user after having changed plans
+            UserBalance userBalance = userBalanceRepository.findByUid(user.getId());
+
+            int oldBalance = userBalance.getBalance();
+            if (oldPlan != null && newPlan != null) {
+                // Check if there is a negative balance meaning the user has not paid for the old plan yet
+                // If there is a negative balance then the balance will be nullified and the new amount
+                // Will be added to the balance of the user for the new plan
+                if (oldBalance < 0) {
+                    int nullifyAmount = oldPlan.getPrice();
+                    int newBalance = oldBalance + nullifyAmount;
+                    newBalance = newBalance - newPlan.getPrice();
+                    userBalance.setBalance(newBalance);
+                    userBalanceRepository.update(userBalance);
+                }
+                
+                // Check if there is a zero balance meaning the user has paid for the old plan
+                if (oldBalance == 0) {
+                    if (oldPlan.getPrice() > newPlan.getPrice()) {
+                        int refundAmount = oldPlan.getPrice() - newPlan.getPrice();
+                        int newBalance = oldBalance + refundAmount;
+                        userBalance.setBalance(newBalance);
+                        userBalanceRepository.update(userBalance);
+                    } else if (oldPlan.getPrice() < newPlan.getPrice()) {
+                        int amountOwed = newPlan.getPrice() - oldPlan.getPrice();
+                        int newBalance = oldBalance - amountOwed;
+                        userBalance.setBalance(newBalance);
+                        userBalanceRepository.update(userBalance);
+                    }
+                }
+            }
+        }
         return repository.update(user);
     }
 
