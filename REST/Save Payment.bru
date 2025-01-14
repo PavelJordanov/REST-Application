@@ -1,0 +1,25 @@
+meta {
+  name: Save Payment
+  type: http
+  seq: 15
+}
+
+post {
+  url: http://localhost:8080/payment
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "fd8985a2-84ad-4245-8500-d9f362222229",
+    "uid": "fd8985a2-84ad-4245-8500-d9f362222222",
+    "type": "payment",
+    "amount": "2190",
+    "date": "2025-01-12"
+  }
+}

@@ -52,8 +52,8 @@ public class UserBalanceRepository {
 
     public int update(UserBalance userBalance) {
         return jdbcTemplate.update(
-            "UPDATE userbalances SET id = ?, uid = ?, balance = ? WHERE id = ?",
-            userBalance.getId(), userBalance.getUid(), userBalance.getBalance()
+            "UPDATE userbalances SET uid = ?, balance = ? WHERE id = ?",
+            userBalance.getUid(), userBalance.getBalance(), userBalance.getId()
         );
     }
 }
